@@ -1,0 +1,45 @@
+#+TITLE: Dev
+
+* 開発環境セットアップ
+
+まずは何よりGCP への接続をしてください
+
+#+begin_src shell
+gcloud auth login
+glocud config set project mneguru-playground-dev
+#+end_src
+
+* 環境構築
+
+1. terraform の適用
+   #+begin_src shell
+cd ops/terraform
+make apply
+   #+end_src
+
+
+* お片付け
+1.  各 gke 削除
+
+   次のコマンドをすべての k8s/XXX/ で実行
+   #+begin_src shell
+make helm-delete
+   #+end_src
+
+2.  terraform の破壊
+
+   #+begin_src shell
+cd ops/terraform
+make destroy
+   #+end_src
+
+
+* このあとやるメモ
+- logback を取っ払った pedestal を作る
+  あの周りわざわざ触りたくない
+- graalvm とタイマンする
+* Note
+
+#+begin_src shell
+curl -H 'Content-Type: application/json' -X POST -d '{"query":"query GetByID($id: ID) {\n  game_by_id(id: $id) {\n    description\n    id\n    max_players\n    name\n    play_time\n    summary\n  }\n}\n","variables":{"id":"1234"},"operationName":"GetByID"}'  http://localhost:8888/api
+#+end_src

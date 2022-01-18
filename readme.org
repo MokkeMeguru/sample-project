@@ -1,0 +1,42 @@
+#+TITLE: README
+* App 構成
+- App Server
+  - /query graphql endpoint
+    - GetUsers ユーザ情報のリストを返す
+
+- Automation utility
+  - cloud function
+    - 定期的に App Server を呼び出してユーザ情報の中で資産の多い人をログに出す
+
+      ※ Pub/Sub -> automation utility <-> App Server
+
+* インフラ構成
+- AlgoCD
+  - GKE cluster
+
+- App Server
+  - GKE cluster
+    - network: ClusterIP
+
+- Automation utility
+  - cloud function
+    - network: serverless VPC (to GKE cluster)
+
+* ブランチ戦略
+- main
+
+    サーバコードのメインブランチ
+    main の push を hook にして container registry へ upload
+
+- feature/xxx
+
+    -> main ブランチ
+    サーバ機能の実装 branch
+
+- ops
+
+    ops のメインブランチ
+    terraform の設定 / helm の設定 / AlgoCD の manifest が入っている
+
+    ops/main の push を hook にして terraform apply
+    AlgoCD を呼び出す

@@ -1,0 +1,4 @@
+{:cljfmt {:indents {mdefn [[:inner 0]]
+                    mdefn- [[:inner 0]]
+                    fdef [[:inner 0]]}
+          :list-indent 1}}

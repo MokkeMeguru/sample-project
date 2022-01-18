@@ -1,0 +1,10 @@
+{:rules
+ {:indentation {:indents {mdefn [[:inner 0]]
+                          mdefn- [[:inner 0]]
+                          fdef [[:inner 0]]}
+                :list-indent 1}
+  :blank-lines {:max-consecutive 1, :padding-lines 1}
+  :vars {:enabled? false}
+  :functions {:enabled? false}
+  :types {:enabled? false}
+  :namespaces {:indent-size 1}}}

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+clojure -M:test/clj-kondo
+clojure -M:test/test --plugin cloverage

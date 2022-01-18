@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "https://json.schemastore.org/chart.json": "file:///home/meguru/Github/sample-project/ops/k8s/what-the-helm/Chart.yaml"
+    }
+}
